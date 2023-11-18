@@ -1,0 +1,13 @@
+periferici usati:
+usart2
+tim3 (canale 1,2,3 in output compare)
+tim4 (canale 4 in input capture)
+adc1 (canale 0 e 18)
+GPIO (PA5 per il led verde all interno della board, PC5 per un led rosso all esterno della board, )
+
+ho usato il timer 3 per creare le ricorrenze nelle quali eseguo le scansioni di temperatura, ogni 200 ms, di tensione, ogni 350 ms, e per quella relativa allo stampaggio su uart dello stato dei pin PA5 e PC5 e dell eventuale messaggio relativo allo stato di wait, ogni 500ms.
+
+il timer 4 l ho usato per rilevare la pressione del tasto presente sulla board, la cui uscita, prelevata dal PC13, viene mandata in ingresso al PB9, pin collegato all input capture del canale 4 del tim4.
+
+l adc l ho usato in modalità scansione singola, che veniva iniziata con cadenza determinata dai canali del tim3. La misura di tensione, che viene effettuata ai capi di un potenziometro, triggera, sotto 1.8V, il led verde e , sopra i 2.7V, il led rosso.
+
